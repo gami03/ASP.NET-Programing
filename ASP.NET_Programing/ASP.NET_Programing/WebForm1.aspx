@@ -14,8 +14,7 @@
             <asp:Label ID="Label1" Text="ASP.NET 게시판" runat="server" />
         </div>
         <div>
-            <asp:gridview id="GridView1" runat="server" autogeneratecolumns="False" 
-                datasourceid="SqlDataSource1" emptydatatext="There are no data records to display.">
+            <asp:gridview id="GridView1" runat="server" autogeneratecolumns="False" emptydatatext="There are no data records to display.">
                 <%--      
                 <columns>
                     <asp:boundfield datafield="userNo" headertext="userNo" readonly="True" 
@@ -50,7 +49,7 @@
                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#F7F6F3" ForeColor="#333333" />
             </asp:gridview>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:webboardConnectionString %>" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [user]"></asp:SqlDataSource>
+            <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" OnSelecting="SqlDataSource1_Selecting" />--%>
         </div>
     </form>
 </body>
