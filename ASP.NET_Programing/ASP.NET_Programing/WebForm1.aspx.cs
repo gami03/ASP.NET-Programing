@@ -26,22 +26,14 @@ namespace ASP.NET_Programing
 		{
 			userMgr userManager = new userMgr();
 
-			string query = "SELECT * FROM [user]";
+			Console.WriteLine("BindUser");
 
-			DataTable userData = userManager.GetUsers(query);
+			string whereQuery = "userNo = 1";
+
+			DataTable userData = userManager.GetUsers(whereQuery);
 
 			GridView1.DataSource = userData;
 			GridView1.DataBind();
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-		{
-
 		}
 	}
 }

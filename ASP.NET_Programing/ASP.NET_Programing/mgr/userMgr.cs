@@ -1,73 +1,75 @@
-﻿using System;
+﻿using ASP.NET_Programing.DacAdvance;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ASP.NET_Programing.mgr
 {
 	public class userMgr
 	{
-		private string connectionString;
+		private readonly userDacAdvance userDadvance;
 
 		public userMgr()
 		{
-			// 생성자에서 연결 문자열 초기화
-			connectionString = ConfigurationManager.ConnectionStrings["webboardConnectionString"].ConnectionString;
+			// DaAdvance 인스턴스를 생성
+			userDadvance = new userDacAdvance();
 		}
 
 		/// <summary>
-		/// ㅅㅅㅅ
+		/// user table의 전체값을 where 절을 받아서 조회하여 반환 
 		/// </summary>
-		/// <param name="query">조회할 쿼리</param>
+		/// <param name="whereQuery">select user 의 where절</param>
 		/// <returns></returns>
-		public DataTable GetUsers(string query)
+		public DataTable GetUsers(string whereQuery)
 		{
-			DataTable table = new DataTable();
+			string query = "SELECT * FROM [user]";
 
-			using (SqlConnection connection = new SqlConnection(connectionString))
+			System.Diagnostics.Debug.WriteLine("출력할 문자열");
+
+			if (!string.IsNullOrEmpty(whereQuery))
 			{
-				connection.Open();
-
-				using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
-				{
-					adapter.Fill(table);
-				}
+				query += " where " + whereQuery;
 			}
 
-			return table;
+			System.Diagnostics.Debug.WriteLine("query" + query);
+
+			// DaAdvance를 사용하여 쿼리 실행
+			return userDadvance.ReadQuery(query);
 		}
 
-		/// <summary>
-		/// test method
-		/// </summary>
-		/// <param name="a">test param1</param>
-		/// <param name="b">test param2</param>
-		/// <returns></returns>
-		public DataTable GetUsers(string a, string b)
-		{
-			return GetUsers(a + b);
-		}
+		///// <summary>
+		///// test method
+		///// </summary>
+		///// <param name="a">test param1</param>
+		///// <param name="b">test param2</param>
+		///// <returns></returns>
+		//public DataTable GetUsers(string a, string b)
+		//{
+		//	return GetUsers(a + b);
+		//}
 
-		public DataTable GetUsers()
-		{
-			DataTable table = new DataTable();
+		//public DataTable GetUsers()
+		//{
+		//	DataTable table = new DataTable();
 
-			using (SqlConnection connection = new SqlConnection(connectionString))
-			{
-				connection.Open();
+		//	using (SqlConnection connection = new SqlConnection(connectionString))
+		//	{
+		//		connection.Open();
 
-				string query = "SELECT * FROM [user]";
+		//		string query = "SELECT * FROM [user]";
 
-				using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
-				{
-					adapter.Fill(table);
-				}
-			}
+		//		using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+		//		{
+		//			adapter.Fill(table);
+		//		}
+		//	}
 
-			return table;
-		}
+		//	return table;
+		//}
 	}
 }

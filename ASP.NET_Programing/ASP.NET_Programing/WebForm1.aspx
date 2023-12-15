@@ -15,14 +15,6 @@
         </div>
         <div>
             <asp:gridview id="GridView1" runat="server" autogeneratecolumns="False" emptydatatext="There are no data records to display.">
-                <%--      
-                <columns>
-                    <asp:boundfield datafield="userNo" headertext="userNo" readonly="True" 
-                        sortexpression="userNo" />
-                    <asp:boundfield datafield="usrName" headertext="usrName" sortexpression="usrName" />
-                    <asp:boundfield datafield="userAge" headertext="userAge" sortexpression="userAge" />
-                </columns>
-                --%>
 
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
@@ -48,6 +40,12 @@
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#F7F6F3" ForeColor="#333333" />
+
+                <columns>
+                    <asp:commandfield buttontype="Button" showeditbutton="true" showheader="true" headertext="수정" />
+                    <asp:commandfield buttontype="Button" showdeletebutton="true" showheader="true" headertext="삭제" />
+
+                </columns>
             </asp:gridview>
             <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" OnSelecting="SqlDataSource1_Selecting" />--%>
         </div>
