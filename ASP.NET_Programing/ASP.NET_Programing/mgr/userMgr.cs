@@ -42,6 +42,13 @@ namespace ASP.NET_Programing.mgr
 			return userDadvance.ReadQuery(query);
 		}
 
+		public DataTable UpdateUser(int userNo, String userName, int userAge)
+		{
+			string query = "UPDATE [user] SET userName = '" + userName + "', userAge = " + userAge + " WHERE userNo = " + userNo;
+
+			return userDadvance.ReadQuery(query);
+		}
+
 		///// <summary>
 		///// test method
 		///// </summary>
@@ -71,5 +78,12 @@ namespace ASP.NET_Programing.mgr
 
 		//	return table;
 		//}
+
+		public DataTable DeleteUser(int userNo, String userName)
+		{
+			string query = "DELETE FROM [user] WHERE userNo = " + userNo + " and userName = " + "'" + userName + "'";
+
+			return userDadvance.ReadQuery(query);
+		}
 	}
 }
